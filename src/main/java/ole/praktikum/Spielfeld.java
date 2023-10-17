@@ -22,12 +22,7 @@ public class Spielfeld {
         feld_arr[x][y] = wert;
     }
     public boolean istenthalten(int x){
-        if(!(Arrays.asList(feld_arr).contains(x))){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return !(Arrays.asList(feld_arr).contains(x));
     }
 
 }//enthält koordinaten 3x3 mit dem Zustand des Feldes
