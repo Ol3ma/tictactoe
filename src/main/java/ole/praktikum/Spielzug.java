@@ -3,14 +3,24 @@ package ole.praktikum;
 import java.util.Scanner;
 
 public class Spielzug {
-    public int[] zug(boolean spieler) {
+    public int[] zug(int[][] spielfeld,boolean spieler) {
         int[] koordinaten = new int[2];
+        boolean fertig = true;
+        while (fertig) {
+            if (spieler) {
+                System.out.println("Auf welches Feld willst du ein Kreuz setzten?");
+            } else {
+                System.out.println("Auf welches Feld willst du ein Kreis setzten?");
+            }
 
-
-        Scanner myObj = new Scanner(System.in);
-        String position = myObj.nextLine();
-        koordinaten[0] = position.charAt(0);
-        koordinaten[1] = position.charAt(1);
+            Scanner myObj = new Scanner(System.in);
+            String position = myObj.nextLine();
+            koordinaten[0] = position.charAt(0);
+            koordinaten[1] = position.charAt(1);
+            if ((spielfeld[koordinaten[0]][koordinaten[1]] == 0)){
+                fertig = false;
+            }
+        }
         return koordinaten;
 
     /*
