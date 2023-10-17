@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Spielzug {
     public void zug(Spielfeld spielfeld,boolean spieler) {
         int[] koordinaten = new int[2];
-        boolean fertig1 = true;
-        boolean fertig2 = true;
-        boolean fertig3 = true;
-        while (fertig1 && fertig2 && fertig3) {
+        boolean yinpruefung = true;
+        boolean xinpruefung = true;
+        boolean feldIstFrei = true;
+        while (yinpruefung && xinpruefung && feldIstFrei) {
             if (spieler) {
                 System.out.println("Auf welches Feld willst du ein Kreuz setzen?");
             } else {
@@ -19,34 +19,35 @@ public class Spielzug {
             String position = myObj.nextLine();
             if (position.charAt(0) == '1') {
                 koordinaten[0] = 0;
-                fertig2=false;
+                xinpruefung=false;
             } else if (position.charAt(0) == '2') {
                 koordinaten[0] = 1;
-                fertig2=false;
+                xinpruefung=false;
             } else if (position.charAt(0) == '3') {
                 koordinaten[0] = 2;
-                fertig2=false;
+                xinpruefung=false;
             }
 
             if (position.charAt(1) == '1') {
                 koordinaten[1] = 0;
-                fertig1=false;
+                yinpruefung=false;
             } else if (position.charAt(1) == '2') {
                 koordinaten[1] = 1;
-                fertig1=false;
+                yinpruefung=false;
             } else if (position.charAt(1) == '3') {
                 koordinaten[1] = 2;
-                fertig1=false;
+                yinpruefung=false;
             }
-            if ((fertig1 && fertig2 && fertig3)) {
-                System.out.println("Falsche Eingabe");
-            }
-            else if ((spielfeld.abfragespielstein(koordinaten[0],koordinaten[1]) == 0)){
-                fertig3 = false;
+            if ((spielfeld.abfragespielstein(koordinaten[0],koordinaten[1]) == 0)){
+                feldIstFrei = false;
             }
             else {
                 System.out.println("Feld schon belegt!!!");
             }
+            if ((yinpruefung && xinpruefung && feldIstFrei)) {
+                System.out.println("Falsche Eingabe");
+            }
+
         }
         if(spieler){
             spielfeld.setztenspielstein(koordinaten[0],koordinaten[1],1 );
