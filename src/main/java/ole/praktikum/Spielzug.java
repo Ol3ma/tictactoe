@@ -8,9 +8,9 @@ public class Spielzug {
         boolean fertig = true;
         while (fertig) {
             if (spieler) {
-                System.out.println("Auf welches Feld willst du ein Kreuz setzten?");
+                System.out.println("Auf welches Feld willst du ein Kreuz setzen?");
             } else {
-                System.out.println("Auf welches Feld willst du ein Kreis setzten?");
+                System.out.println("Auf welches Feld willst du ein Kreis setzen?");
             }
 
             Scanner myObj = new Scanner(System.in);
