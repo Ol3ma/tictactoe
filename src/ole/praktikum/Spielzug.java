@@ -15,8 +15,8 @@ public class Spielzug {
                 System.out.println("Auf welches Feld willst du ein Kreis setzen?");
             }
 
-            Scanner myObj = new Scanner(System.in);
-            String position = myObj.nextLine();
+            Scanner scanner = new Scanner(System.in);
+            String position = scanner.nextLine();
             if (position.charAt(0) == '1') {
                 koordinaten[0] = 0;
                 xinpruefung=false;

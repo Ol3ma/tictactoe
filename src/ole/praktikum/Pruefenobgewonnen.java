@@ -1,5 +1,5 @@
 package ole.praktikum;
-import java.util.Arrays;
+
 public class Pruefenobgewonnen {
 
     private boolean Pruefendreigleiche(int eins,int zwei,int drei){
@@ -19,7 +19,7 @@ public class Pruefenobgewonnen {
      * @param spielfeld
      * @return
      */
-    public int prüfen(Spielfeld  spielfeld){
+    public int pruefen(Spielfeld  spielfeld){
         for(int i = 0;i<3;i++) {
             if (!(spielfeld.abfragespielstein(i,0) == 0) && Pruefendreigleiche(spielfeld.abfragespielstein(i,0), spielfeld.abfragespielstein(i,1), spielfeld.abfragespielstein(i,2))){
                 return spielfeld.abfragespielstein(i,0);
