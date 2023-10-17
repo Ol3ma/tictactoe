@@ -1,5 +1,5 @@
 package ole.praktikum;
-
+import java.util.Arrays;
 public class Prüfenobgewonnen {
 
     private boolean Pruefendreigleiche(int eins,int zwei,int drei){
@@ -26,6 +26,9 @@ public class Prüfenobgewonnen {
         }
         if (!(feld[0][0] == 0) && Pruefendreigleiche(feld[1][1], feld[2][2], feld[0][0])) {
             return feld[0][0];
+        }
+        if(!(Arrays.asList(feld).contains(0))){
+            return 3;
         }
         return 0;
     }
