@@ -1,6 +1,8 @@
 package ole.praktikum;
 
 
+import java.util.Arrays;
+
 public class Spielfeld {
 
     private int[][] feld_arr = new int[3][3]; // 0 gleich leer, 1 gleich kreuz, 2 gleich kreis
@@ -19,4 +21,13 @@ public class Spielfeld {
     public void setztenspielstein(int x,int y,int wert){
         feld_arr[x][y] = wert;
     }
+    public boolean istenthalten(int x){
+        if(!(Arrays.asList(feld_arr).contains(x))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }//enthält koordinaten 3x3 mit dem Zustand des Feldes
