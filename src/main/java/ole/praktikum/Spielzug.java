@@ -15,8 +15,8 @@ public class Spielzug {
 
             Scanner myObj = new Scanner(System.in);
             String position = myObj.nextLine();
-            koordinaten[0] = position.charAt(0);
-            koordinaten[1] = position.charAt(1);
+            koordinaten[0] = Integer.parseInt( String.valueOf( position.charAt(0)) );
+            koordinaten[1] = Integer.parseInt( String.valueOf( position.charAt(1)) );
             if ((spielfeld.abfragespielstein(koordinaten[0],koordinaten[1]) == 0)){
                 fertig = false;
             }
