@@ -23,31 +23,6 @@ public class Spielzug {
                 wertpruefen = false;
             }
 
-            /*
-            if (position.charAt(0) == '1') {
-                koordinaten[0] = 0;
-                xinpruefung=false;
-            } else if (position.charAt(0) == '2') {
-                koordinaten[0] = 1;
-                xinpruefung=false;
-            } else if (position.charAt(0) == '3') {
-                koordinaten[0] = 2;
-                xinpruefung=false;
-            }
-
-            if (position.charAt(1) == '1') {
-                koordinaten[1] = 0;
-                yinpruefung=false;
-            } else if (position.charAt(1) == '2') {
-                koordinaten[1] = 1;
-                yinpruefung=false;
-            } else if (position.charAt(1) == '3') {
-                koordinaten[1] = 2;
-                yinpruefung=false;
-            }
-            */
-
-
             if ((spielfeld.abfragespielstein(koordinaten[0], koordinaten[1]) == 0)) {
                 feldIstFrei = true;
             } else {
