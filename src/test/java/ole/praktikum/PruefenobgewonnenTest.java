@@ -29,7 +29,7 @@ class PruefenobgewonnenTest {
         // when
         for(int i = 0;3 > i;i++) {
             for (int j = 0; 3 > j; j++) {
-                spielfeld.setztenspielstein(i, j, 3);
+                spielfeld.setztenspielstein(i, j, "T"+i+j);
             }
         }
         boolean ergebnis = sut.pruefenunendschieden(spielfeld);
@@ -47,7 +47,7 @@ class PruefenobgewonnenTest {
         // when
 
             for (int j = 0; 3 > j; j++) {
-                spielfeld.setztenspielstein(0, j, 1);
+                spielfeld.setztenspielstein(0, j, "1");
             }
 
         boolean ergebnis = sut.pruefenobgewonnen(spielfeld);
@@ -65,7 +65,7 @@ class PruefenobgewonnenTest {
         // when
 
         for (int j = 0; 3 > j; j++) {
-            spielfeld.setztenspielstein(j, 0, 2);
+            spielfeld.setztenspielstein(j, 0, "2");
         }
 
         boolean ergebnis = sut.pruefenobgewonnen(spielfeld);

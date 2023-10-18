@@ -22,7 +22,7 @@ public class Spielzug {
                 wertpruefen = false;
             }
 
-            if ((spielfeld.abfragespielstein(koordinaten[0], koordinaten[1]) == 0)) {
+            if ((spielfeld.abfragespielstein(koordinaten[0], koordinaten[1]).equals(spielfeld.leeresFeld))) {
                 feldIstFrei = true;
             } else {
                 System.out.println("Feld schon belegt!!!");
@@ -32,7 +32,7 @@ public class Spielzug {
             }
         }
 
-            spielfeld.setztenspielstein(koordinaten[0], koordinaten[1], aktiverSpieler.getSpielerNummer());
+            spielfeld.setztenspielstein(koordinaten[0], koordinaten[1], aktiverSpieler.getSpielFigur());
 
     }
 }//Prüft ob das Feld noch frei ist. Informationen vom Spielfeld

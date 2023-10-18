@@ -1,10 +1,10 @@
 package ole.praktikum;
 
 public class Spieler {
-    private final int spielerNummer;
+    private final String spielerNummer;
     private final String spielFigur;
 
-    public Spieler(int spielerNummer, String spielFigur) {
+    public Spieler(String spielerNummer, String spielFigur) {
         this.spielerNummer = spielerNummer;
         this.spielFigur = spielFigur;
     }
@@ -13,7 +13,7 @@ public class Spieler {
         return spielFigur;
     }
 
-    public int getSpielerNummer() {
+    public String getSpielerNummer() {
         return spielerNummer;
     }
 }

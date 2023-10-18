@@ -5,24 +5,29 @@ import java.util.Arrays;
 
 public class Spielfeld {
 
-    private int[][] feld_arr = new int[3][3]; // 0 gleich leer, 1 gleich kreuz, 2 gleich kreis
+    public final String leeresFeld = " ";
 
-    /**
-     * 0 = leeres Feld
-     * 1 = kreuz
-     * 2 = kreis
-     * @param x
-     * @param y
-     * @return
-     */
-    public int abfragespielstein(int x,int y){
+    private String[][] feld_arr = {{leeresFeld,leeresFeld,leeresFeld},
+            {leeresFeld,leeresFeld,leeresFeld},
+            {leeresFeld,leeresFeld,leeresFeld}}; // 0 gleich leer, 1 gleich kreuz, 2 gleich kreis
+
+
+    public String abfragespielstein(int x, int y){
         return feld_arr[x][y];
     }
-    public void setztenspielstein(int x,int y,int wert){
+    public void setztenspielstein(int x, int y, String wert){
         feld_arr[x][y] = wert;
     }
-    public boolean istenthalten(int x){
-        return Arrays.asList(feld_arr).contains(x);
+    public boolean istenthalten(String feld){
+
+        for(int i = 0;2>i;i++) {
+            for(int j = 0;2>j;j++){
+                if(feld.equals(feld_arr[i][j])){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }//enthält koordinaten 3x3 mit dem Zustand des Feldes
