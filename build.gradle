@@ -1,24 +1,46 @@
 plugins {
+    id 'java'
     id 'application'
-}
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+
+    // Plugin to use JavaFX, provides the javafx task
+    // https://github.com/openjfx/javafx-gradle-plugin
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+
+}
+// LTS until September 2023
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 repositories {
     mavenCentral()
 }
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src']
-        }
-    }
-}
+
 dependencies {
-    implementation 'junit:junit:4.12'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 application {
+
+    // Define the main class for the application.
     mainClass = 'ole.praktikum.Ablauf'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+javafx {
+
+    version = '11'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
+
 }
