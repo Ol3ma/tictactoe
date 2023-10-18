@@ -3,17 +3,16 @@ package ole.praktikum;
 import java.util.Scanner;
 
 public class Spielzug {
-    public void zug(Spielfeld spielfeld, boolean spieler) {
+    public void zug(Spielfeld spielfeld, Spieler aktiverSpieler) {
         int[] koordinaten = new int[3];
         boolean wertpruefen = true;
         boolean feldIstFrei = false;
         Eingabeanpassen eingabeanpassen = new Eingabeanpassen();
         while (!feldIstFrei || wertpruefen) {
-            if (spieler) {
-                System.out.println("Auf welches Feld willst du ein Kreuz setzen?");
-            } else {
-                System.out.println("Auf welches Feld willst du ein Kreis setzen?");
-            }
+
+
+            System.out.println("Spieler "+aktiverSpieler.getSpielerNummer()+": Auf welches Feld willst du ein "+aktiverSpieler.getSpielFigur()+" setzen?");
+
 
             Scanner scanner = new Scanner(System.in);
             String position = scanner.nextLine();
@@ -33,10 +32,7 @@ public class Spielzug {
             }
         }
 
-        if (spieler) {
-            spielfeld.setztenspielstein(koordinaten[0], koordinaten[1], 1);
-        } else {
-            spielfeld.setztenspielstein(koordinaten[0], koordinaten[1], 2);
-        }
+            spielfeld.setztenspielstein(koordinaten[0], koordinaten[1], aktiverSpieler.getSpielerNummer());
+
     }
 }//Prüft ob das Feld noch frei ist. Informationen vom Spielfeld
