@@ -2,7 +2,7 @@ package ole.praktikum;
 
 public class Eingabeanpassen {
     public int[] Umschreiben(String position) {
-        int[] koordinaten = new int[3];
+        int[] koordinaten = new int[2];
         if (position.charAt(0) == '1') {
             koordinaten[0] = 0;
         } else if (position.charAt(0) == '2') {
