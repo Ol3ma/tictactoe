@@ -11,7 +11,7 @@ public class Ablauf {
         Spielfeld spielfeld = new Spielfeld();
         Pruefenobgewonnen pruefenobgewonnen = new Pruefenobgewonnen();
         Spielzug spielzug = new Spielzug();
-        while (pruefenobgewonnen.pruefen(spielfeld) == 0) {
+        while (pruefenobgewonnen.pruefenobgewonnen(spielfeld) || pruefenobgewonnen.pruefenunendschieden(spielfeld)) {
             spielzug.zug(spielfeld, aktiverSpieler);
 
             if (aktiverSpieler.equals(spieler1)) {
@@ -26,12 +26,10 @@ public class Ablauf {
             System.out.println("-----------");
             System.out.println(spielfeld.abfragespielstein(0,2)+" | "+spielfeld.abfragespielstein(1,2)+" | "+spielfeld.abfragespielstein(2,2));
         }
-        if (pruefenobgewonnen.pruefen(spielfeld) == 3){
+        if (pruefenobgewonnen.pruefenunendschieden(spielfeld)){
         System.out.println("Unentschieden");
-        } else if (pruefenobgewonnen.pruefen(spielfeld) == 1) {
-            System.out.println("Kreis hat Gewonnen");
-        } else if (pruefenobgewonnen.pruefen(spielfeld) == 2) {
-            System.out.println("Kreuz hat Gewonnen");
+        } else if (pruefenobgewonnen.pruefenobgewonnen(spielfeld)) {
+            System.out.println(aktiverSpieler.getSpielFigur()+" hat Gewonnen");
         }
     }
 

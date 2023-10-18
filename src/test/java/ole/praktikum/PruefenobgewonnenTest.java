@@ -14,10 +14,10 @@ class PruefenobgewonnenTest {
         Pruefenobgewonnen sut = new Pruefenobgewonnen();
 
         // when
-        int ergebnis = sut.pruefen(spielfeld);
+       boolean ergebnis = sut.pruefenunendschieden(spielfeld);
 
         // then
-        assertEquals(0, ergebnis);
+        assertFalse(ergebnis);
     }
     @Test
     void testunendschieden() {
@@ -32,10 +32,10 @@ class PruefenobgewonnenTest {
                 spielfeld.setztenspielstein(i, j, 3);
             }
         }
-        int ergebnis = sut.pruefen(spielfeld);
+        boolean ergebnis = sut.pruefenunendschieden(spielfeld);
 
         // then
-        assertEquals(3, ergebnis);
+        assertTrue(ergebnis);
     }
     @Test
     void testgewonnenspielereins() {
@@ -50,10 +50,10 @@ class PruefenobgewonnenTest {
                 spielfeld.setztenspielstein(0, j, 1);
             }
 
-        int ergebnis = sut.pruefen(spielfeld);
+        boolean ergebnis = sut.pruefenobgewonnen(spielfeld);
 
         // then
-        assertEquals(1, ergebnis);
+        assertTrue(ergebnis);
     }
     @Test
     void testgewonnenspielerzwei() {
@@ -68,9 +68,9 @@ class PruefenobgewonnenTest {
             spielfeld.setztenspielstein(j, 0, 2);
         }
 
-        int ergebnis = sut.pruefen(spielfeld);
+        boolean ergebnis = sut.pruefenobgewonnen(spielfeld);
 
         // then
-        assertEquals(2, ergebnis);
+        assertTrue(ergebnis);
     }
 }
