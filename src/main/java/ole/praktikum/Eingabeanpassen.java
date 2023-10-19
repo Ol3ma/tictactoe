@@ -38,7 +38,7 @@ public class Eingabeanpassen {
         } else if (position.charAt(1) == '3') {
             yinpruefung = false;
         }
-        return !(yinpruefung || xinpruefung);
+        return !yinpruefung && !xinpruefung;
     }
 }
 

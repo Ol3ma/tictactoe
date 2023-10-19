@@ -31,7 +31,7 @@ java {
 application {
 
     // Define the main class for the application.
-    mainClass = 'ole.praktikum.Ablauf'
+    mainClass = 'ole.praktikum.ui.UIStart'
 }
 
 test {

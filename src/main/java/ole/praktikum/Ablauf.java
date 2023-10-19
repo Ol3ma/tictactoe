@@ -1,11 +1,12 @@
 package ole.praktikum;
 
+import ole.praktikum.ui.UIStart;
+
 public class Ablauf {
 
     public static void main(String[] args) {
         Spieler spieler1 = new Spieler("2","X");
         Spieler spieler2 = new Spieler("1","0");
-
         Spieler aktiverSpieler = spieler2;
 
         Spielfeld spielfeld = new Spielfeld();
