@@ -20,8 +20,8 @@ public class Spielfeld {
     }
     public boolean istenthalten(String feld){
 
-        for(int i = 0;2>i;i++) {
-            for(int j = 0;2>j;j++){
+        for(int i = 0;3>i;i++) {
+            for(int j = 0;3>j;j++){
                 if(feld.equals(feld_arr[i][j])){
                     return true;
                 }

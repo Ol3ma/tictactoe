@@ -3,10 +3,10 @@ package ole.praktikum;
 public class Ablauf {
 
     public static void main(String[] args) {
-        Spieler spieler1 = new Spieler("1","X");
-        Spieler spieler2 = new Spieler("2","0");
+        Spieler spieler1 = new Spieler("2","X");
+        Spieler spieler2 = new Spieler("1","0");
 
-        Spieler aktiverSpieler = spieler1;
+        Spieler aktiverSpieler = spieler2;
 
         Spielfeld spielfeld = new Spielfeld();
         Pruefenobgewonnen pruefenobgewonnen = new Pruefenobgewonnen();

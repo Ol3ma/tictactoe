@@ -73,4 +73,22 @@ class PruefenobgewonnenTest {
         // then
         assertTrue(ergebnis);
     }
+    @Test
+    void testbeivierunendschieden() {
+
+        // given
+        Spielfeld spielfeld = new Spielfeld();
+        Pruefenobgewonnen sut = new Pruefenobgewonnen();
+
+        // when
+        for(int i = 0;2 > i;i++) {
+            for (int j = 0; 2 > j; j++) {
+                spielfeld.setztenspielstein(i, j, "T"+i+j);
+            }
+        }
+        boolean ergebnis = sut.pruefenunendschieden(spielfeld);
+
+        // then
+        assertFalse(ergebnis);
+    }
 }
