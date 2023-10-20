@@ -4,18 +4,11 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ole.praktikum.Spieler;
 import ole.praktikum.Spielfeld;
-
-import java.io.IOException;
 
 import static javafx.application.Application.launch;
 
@@ -23,8 +16,15 @@ public class UIStart extends Application {
 
     InfoCenter infoCenter;
     TileBoard tileBoard;
+    Scoreboard scoreboard;
 
     private Spielfeld spielfeld;
+
+
+    private Spieler spieler1 = new Spieler("1", "X");
+    private Spieler spieler2 = new Spieler("2", "0");
+
+    private Spieler[] spielers = {spieler1,spieler2};
 
 
     @Override
@@ -53,12 +53,19 @@ public class UIStart extends Application {
         launch(args);
     }
     private void initLayout (BorderPane root) {
+        initScoreboard(root);
         initInfoCenter(root);
         initTileBoard(root);
+
+    }
+
+    private void initScoreboard(BorderPane root) {
+        scoreboard = new Scoreboard(spielers);
+        root.setBottom(scoreboard.getVbox());
     }
 
     private void initTileBoard(BorderPane root) {
-        tileBoard = new TileBoard(infoCenter, spielfeld);
+        tileBoard = new TileBoard(infoCenter, spielfeld, scoreboard,spielers);
         root.setCenter(tileBoard.getStackPane());
     }
 
@@ -71,7 +78,7 @@ public class UIStart extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                tileBoard.Gewonnen();
+                tileBoard.resetspiel();
             }
         };
     }

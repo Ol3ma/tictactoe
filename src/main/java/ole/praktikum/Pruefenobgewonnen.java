@@ -7,23 +7,26 @@ public class Pruefenobgewonnen {
     }
 
     public boolean pruefenobgewonnen(Spielfeld  spielfeld){
-        for(int i = 0;i<3;i++) {
-            if (!(spielfeld.abfragespielstein(i,0).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(i,0), spielfeld.abfragespielstein(i,1), spielfeld.abfragespielstein(i,2))){
-                return true;
+        for (int l = 0;l < Constants.anzahlfelder-2;l++) {
+            for (int k = 0; k < Constants.anzahlfelder-2; k++) {
+                for (int i = 0; i < 3; i++) {
+                    if (!(spielfeld.abfragespielstein(i+k, 0+l).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(i+k, 0+l), spielfeld.abfragespielstein(i+k, 1+l), spielfeld.abfragespielstein(i+k, 2+l))) {
+                        return true;
+                    }
+                }
+                for (int j = 0; j < 3; j++) {
+                    if (!(spielfeld.abfragespielstein(0+k, j+l).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0+k, j+l), spielfeld.abfragespielstein(1+k, j+l), spielfeld.abfragespielstein(2+k, j+l))) {
+                        return true;
+                    }
+                }
+                if (!(spielfeld.abfragespielstein(2+k, 0+l).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0+k, 2+l), spielfeld.abfragespielstein(1+k, 1+l), spielfeld.abfragespielstein(2+k, 0+l))) {
+                    return true;
+                }
+                if (!(spielfeld.abfragespielstein(0+k, 0+l).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0+k, 0+l), spielfeld.abfragespielstein(2+k, 2+l), spielfeld.abfragespielstein(1+k, 1+l))) {
+                    return true;
+                }
             }
         }
-        for(int j = 0;j<3;j++) {
-            if (!(spielfeld.abfragespielstein(0,j).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0,j), spielfeld.abfragespielstein(1,j), spielfeld.abfragespielstein(2,j))) {
-                return true;
-            }
-        }
-        if (!(spielfeld.abfragespielstein(2,0).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0,2),spielfeld.abfragespielstein(1,1), spielfeld.abfragespielstein(2,0))) {
-            return true;
-        }
-        if (!(spielfeld.abfragespielstein(0,0).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0,0), spielfeld.abfragespielstein(2,2), spielfeld.abfragespielstein(1,1))) {
-            return true;
-        }
-
         return false;
     }
     public boolean pruefenunendschieden(Spielfeld spielfeld){

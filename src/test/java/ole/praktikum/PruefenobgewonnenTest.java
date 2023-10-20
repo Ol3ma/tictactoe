@@ -27,8 +27,8 @@ class PruefenobgewonnenTest {
         Pruefenobgewonnen sut = new Pruefenobgewonnen();
 
         // when
-        for(int i = 0;3 > i;i++) {
-            for (int j = 0; 3 > j; j++) {
+        for(int i = 0;Constants.anzahlfelder > i;i++) {
+            for (int j = 0; Constants.anzahlfelder > j; j++) {
                 spielfeld.setztenspielstein(i, j, "T"+i+j);
             }
         }

@@ -9,37 +9,50 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import ole.praktikum.Pruefenobgewonnen;
-import ole.praktikum.Spieler;
-import ole.praktikum.Spielfeld;
-import ole.praktikum.Spielzug;
-
+import ole.praktikum.*;
 
 
 public class TileBoard {
 
-    Spielzug spielzug = new Spielzug();
     Pruefenobgewonnen pruefenobgewonnen = new Pruefenobgewonnen();
 
     private StackPane pane;
     private InfoCenter infoCenter;
+    private Scoreboard scoreboard;
+
     private final Spielfeld spielfeld;
 
-    private Tile[][] tieles = new Tile[3][3];
+    private Tile[][] tieles = new Tile[Constants.anzahlfelder][Constants.anzahlfelder];
 
-    public TileBoard(InfoCenter infoCenter, Spielfeld spielfeld) {
+    public TileBoard(InfoCenter infoCenter, Spielfeld spielfeld, Scoreboard scoreboard, Spieler[] spielers) {
         this.infoCenter = infoCenter;
         this.spielfeld = spielfeld;
+        this.scoreboard = scoreboard;
+        this.spielers = spielers;
+        aktiverSpieler = spielers[1];
         pane = new StackPane();
-        //pane.setMinSize(UIConstants.appwidth, UIConstants.gameboardheight);
+
 
         addAllTiles();
     }
+    private Spieler[] spielers;
+    private Spieler aktiverSpieler;
 
 
+
+    public Spieler playaktiverSpieler() {
+        if (aktiverSpieler.equals(spielers[0])) {
+            infoCenter.updateMessage("Setzte ein " + aktiverSpieler.getSpielFigur());
+            aktiverSpieler = spielers[1];
+        } else {
+            infoCenter.updateMessage("Setzte ein " + aktiverSpieler.getSpielFigur());
+            aktiverSpieler = spielers[0];
+        }
+        return aktiverSpieler;
+    }
     private void addAllTiles() {
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
+        for (int row = 0; row < Constants.anzahlfelder; row++) {
+            for (int col = 0; col < Constants.anzahlfelder; col++) {
                 Tile tile = new Tile(row, col);
                 tile.getStackPane().setTranslateX((col * 100) - 100);
                 tile.getStackPane().setTranslateY((row * 100) - 100);
@@ -63,24 +76,16 @@ public class TileBoard {
         return pane;
     }
 
-    private Spieler spieler1 = new Spieler("1", "X");
-    private Spieler spieler2 = new Spieler("2", "0");
-    private Spieler aktiverSpieler = spieler2;
 
-    private Spieler playaktiverSpieler() {
-        if (aktiverSpieler.equals(spieler1)) {
-            infoCenter.updateMessage("Setzte ein " + aktiverSpieler.getSpielFigur());
-            aktiverSpieler = spieler2;
-        } else {
-            infoCenter.updateMessage("Setzte ein " + aktiverSpieler.getSpielFigur());
-            aktiverSpieler = spieler1;
-        }
-        return aktiverSpieler;
-    }
 
-    public void Gewonnen() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+
+
+
+    public void resetspiel() {
+        aktiverSpieler.setGewonnendeSpielepluseins();
+        scoreboard.updateScoreboard(spielers);
+        for (int i = 0; i < Constants.anzahlfelder; i++) {
+            for (int j = 0; j < Constants.anzahlfelder; j++) {
                 spielfeld.setztenspielstein(i, j, spielfeld.leeresFeld);
                 tieles[i][j].reset();
                 infoCenter.updateMessage("Tic-Tac-Toe");
@@ -109,7 +114,7 @@ public class TileBoard {
 
             label = new Label(spielfeld.leeresFeld);
             label.setAlignment(Pos.CENTER);
-            label.setFont(Font.font(24));
+            label.setFont(Font.font(40));
             pane.getChildren().add(label);
             pane.setOnMouseClicked(event -> {
                 if (!(pruefenobgewonnen.pruefenobgewonnen(spielfeld)) && !(pruefenobgewonnen.pruefenunendschieden(spielfeld))) {
@@ -138,20 +143,14 @@ public class TileBoard {
             return pane;
         }
 
-        public String getValue() {
-            return label.getText();
-        }
-
-        public void setValue(String value) {
-            label.setText(value);
-        }
 
         public void Gewonnen(Spieler gewonnenderSpieler) {
-            infoCenter.updateMessage("Spieler " + gewonnenderSpieler.getSpielerNummer() + " hat gewonnen");
+            infoCenter.updateMessage("Spieler " + gewonnenderSpieler.getSpielFigur() + " hat gewonnen");
         }
 
         public void Unendschieden() {
-            infoCenter.updateMessage("Unendschieden");
+            infoCenter.updateMessage("Unentschieden");
+
         }
 
         public void reset() {

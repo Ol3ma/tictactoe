@@ -7,10 +7,15 @@ public class Spielfeld {
 
     public final String leeresFeld = " ";
 
-    private String[][] feld_arr = {{leeresFeld,leeresFeld,leeresFeld},
-            {leeresFeld,leeresFeld,leeresFeld},
-            {leeresFeld,leeresFeld,leeresFeld}}; // 0 gleich leer, 1 gleich kreuz, 2 gleich kreis
+    private String[][] feld_arr = new String[Constants.anzahlfelder][Constants.anzahlfelder];// 0 gleich leer, 1 gleich kreuz, 2 gleich kreis
 
+    public Spielfeld(){
+        for(int i = 0; i < Constants.anzahlfelder ;i++) {
+            for(int j = 0; j < Constants.anzahlfelder ;j++) {
+                feld_arr[i][j] = leeresFeld;
+            }
+        }
+    }
 
     public String abfragespielstein(int x, int y){
         return feld_arr[x][y];
@@ -20,8 +25,8 @@ public class Spielfeld {
     }
     public boolean istenthalten(String feld){
 
-        for(int i = 0;3>i;i++) {
-            for(int j = 0;3>j;j++){
+        for(int i = 0;Constants.anzahlfelder>i;i++) {
+            for(int j = 0;Constants.anzahlfelder>j;j++){
                 if(feld.equals(feld_arr[i][j])){
                     return true;
                 }
