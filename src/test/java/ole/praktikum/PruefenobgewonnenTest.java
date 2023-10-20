@@ -91,4 +91,19 @@ class PruefenobgewonnenTest {
         // then
         assertFalse(ergebnis);
     }
+
+    @Test
+    void pruefeFallNurEinSteinRechtsUnten(){
+
+        // given
+        Spielfeld spielfeld = new Spielfeld();
+        Pruefenobgewonnen sut = new Pruefenobgewonnen();
+
+        spielfeld.setztenspielstein(2,2, "X");
+
+        // when
+        boolean gewonnen = sut.pruefenobgewonnen(spielfeld);
+
+        assertFalse(gewonnen);
+    }
 }

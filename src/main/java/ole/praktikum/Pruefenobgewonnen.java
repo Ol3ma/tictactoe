@@ -17,7 +17,7 @@ public class Pruefenobgewonnen {
                 return true;
             }
         }
-        if (!(spielfeld.abfragespielstein(2,2).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0,2),spielfeld.abfragespielstein(1,1), spielfeld.abfragespielstein(2,0))) {
+        if (!(spielfeld.abfragespielstein(2,0).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0,2),spielfeld.abfragespielstein(1,1), spielfeld.abfragespielstein(2,0))) {
             return true;
         }
         if (!(spielfeld.abfragespielstein(0,0).equals(spielfeld.leeresFeld)) && Pruefendreigleiche(spielfeld.abfragespielstein(0,0), spielfeld.abfragespielstein(2,2), spielfeld.abfragespielstein(1,1))) {

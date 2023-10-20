@@ -67,7 +67,7 @@ public class UIStart extends Application {
             @Override
             public void handle(ActionEvent e) {
 
-                    infoCenter.hideStartButton();
+                    ;
 
             }
         };
