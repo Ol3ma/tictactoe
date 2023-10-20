@@ -20,9 +20,7 @@ public class InfoCenter {
     public InfoCenter()
     {
         pane = new StackPane();
-        pane.setMinSize(UIConstants.appwidth,UIConstants.infocenterheight);
-        pane.setTranslateX(UIConstants.appwidth / 2);
-        pane.setTranslateY(UIConstants.infocenterheight / 2);
+        //pane.setMinSize(UIConstants.appwidth,UIConstants.infocenterheight);
 
         massage = new Label("Tic-Tac-Toe");
         massage.setMinSize(UIConstants.appwidth,UIConstants.infocenterheight);

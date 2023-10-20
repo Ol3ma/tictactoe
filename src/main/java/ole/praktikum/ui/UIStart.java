@@ -54,13 +54,13 @@ public class UIStart extends Application {
 
     private void initTileBoard(BorderPane root) {
         tileBoard = new TileBoard(infoCenter, spielfeld);
-        root.getChildren().add(tileBoard.getStackPane());
+        root.setCenter(tileBoard.getStackPane());
     }
 
     private void initInfoCenter(BorderPane root) {
         infoCenter = new InfoCenter();
         infoCenter.setStartGameButtonOnAktion(startNewGame());
-        root.getChildren().add(infoCenter.getPane());
+        root.setTop(infoCenter.getPane());
     }
     private EventHandler<ActionEvent> startNewGame() {
         return new EventHandler<ActionEvent>() {
@@ -70,7 +70,6 @@ public class UIStart extends Application {
             }
         };
     }
-
 }
 
 

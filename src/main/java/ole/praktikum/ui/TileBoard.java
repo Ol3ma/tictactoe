@@ -30,9 +30,7 @@ public class TileBoard {
         this.infoCenter = infoCenter;
         this.spielfeld = spielfeld;
         pane = new StackPane();
-        pane.setMinSize(UIConstants.appwidth, UIConstants.gameboardheight);
-        pane.setTranslateX(UIConstants.appwidth / 2);
-        pane.setTranslateY(UIConstants.gameboardheight / 2 + UIConstants.infocenterheight);
+        //pane.setMinSize(UIConstants.appwidth, UIConstants.gameboardheight);
 
         addAllTiles();
     }
@@ -98,6 +96,7 @@ public class TileBoard {
         public Tile(int x, int y) {
             pane = new StackPane();
             pane.setMinSize(100, 100);
+            pane.setMaxSize(100,100);
 
             Rectangle border = new Rectangle();
             border.setWidth(100);
