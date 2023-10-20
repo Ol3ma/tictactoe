@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,6 +38,10 @@ public class UIStart extends Application {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root,UIConstants.appwidth, UIConstants.appheight);
         initLayout(root);
+        primaryStage.getIcons().add(new Image("ole/praktikum/ui/Icon.png"));
+        primaryStage.setTitle("Tic Tac Toe");
+        primaryStage.setMinHeight(UIConstants.appheight+25);
+        primaryStage.setMinWidth(UIConstants.appwidth+17);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
