@@ -25,23 +25,25 @@ public class TileBoard {
     private final Spielfeld spielfeld;
 
     private Tile[][] tieles = new Tile[3][3];
-    public TileBoard(InfoCenter infoCenter, Spielfeld spielfeld){
+
+    public TileBoard(InfoCenter infoCenter, Spielfeld spielfeld) {
         this.infoCenter = infoCenter;
         this.spielfeld = spielfeld;
         pane = new StackPane();
-        pane.setMinSize(UIConstants.appwidth,UIConstants.gameboardheight);
+        pane.setMinSize(UIConstants.appwidth, UIConstants.gameboardheight);
         pane.setTranslateX(UIConstants.appwidth / 2);
         pane.setTranslateY(UIConstants.gameboardheight / 2 + UIConstants.infocenterheight);
 
         addAllTiles();
     }
 
+
     private void addAllTiles() {
-        for (int row = 0; row < 3; row++){
-            for (int col=0;col<3;col++){
-                Tile tile = new Tile();
-                tile.getStackPane().setTranslateX((col*100)-100);
-                tile.getStackPane().setTranslateY((row*100)-100);
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                Tile tile = new Tile(row, col);
+                tile.getStackPane().setTranslateX((col * 100) - 100);
+                tile.getStackPane().setTranslateY((row * 100) - 100);
                 pane.getChildren().add(tile.getStackPane());
 
                 int finalRow = row;
@@ -49,7 +51,7 @@ public class TileBoard {
                 tile.textProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observable, String oldValue, String neuerSpielsteinText) {
-                    spielfeld.setztenspielstein(finalRow, finalCol, neuerSpielsteinText);
+                        spielfeld.setztenspielstein(finalRow, finalCol, neuerSpielsteinText);
                     }
                 });
 
@@ -58,26 +60,42 @@ public class TileBoard {
         }
     }
 
-    public StackPane getStackPane(){
-        return  pane;
+    public StackPane getStackPane() {
+        return pane;
     }
-    private Spieler spieler1 = new Spieler("1","X");
-    private Spieler spieler2 = new Spieler("2","0");
+
+    private Spieler spieler1 = new Spieler("1", "X");
+    private Spieler spieler2 = new Spieler("2", "0");
     private Spieler aktiverSpieler = spieler2;
-    private Spieler playaktiverSpieler(){
-        if(aktiverSpieler.equals(spieler1)) {
+
+    private Spieler playaktiverSpieler() {
+        if (aktiverSpieler.equals(spieler1)) {
+            infoCenter.updateMessage("Setzte ein " + aktiverSpieler.getSpielFigur());
             aktiverSpieler = spieler2;
         } else {
+            infoCenter.updateMessage("Setzte ein " + aktiverSpieler.getSpielFigur());
             aktiverSpieler = spieler1;
         }
         return aktiverSpieler;
     }
+
+    public void Gewonnen() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                spielfeld.setztenspielstein(i, j, spielfeld.leeresFeld);
+                tieles[i][j].reset();
+                infoCenter.updateMessage("Tic-Tac-Toe");
+            }
+        }
+    }
+
     private class Tile {
         private StackPane pane;
         private Label label;
 
 
-        public Tile() {
+
+        public Tile(int x, int y) {
             pane = new StackPane();
             pane.setMinSize(100, 100);
 
@@ -94,19 +112,25 @@ public class TileBoard {
             label.setFont(Font.font(24));
             pane.getChildren().add(label);
             pane.setOnMouseClicked(event -> {
-                if(!(pruefenobgewonnen.pruefenobgewonnen(spielfeld))&&!(pruefenobgewonnen.pruefenunendschieden(spielfeld))){
-                label.setText(playaktiverSpieler().getSpielFigur());
+                if (!(pruefenobgewonnen.pruefenobgewonnen(spielfeld)) && !(pruefenobgewonnen.pruefenunendschieden(spielfeld))) {
+                    if (spielfeld.abfragespielstein(x, y).equals(spielfeld.leeresFeld)) {
+                        label.setText(playaktiverSpieler().getSpielFigur());
+                    } else {
+                        infoCenter.updateMessage("Feld schon belegt!!!");
+                    }
                 }
-                if(pruefenobgewonnen.pruefenobgewonnen(spielfeld)){
+                if (pruefenobgewonnen.pruefenobgewonnen(spielfeld)) {
                     Gewonnen(aktiverSpieler);
                 }
-                if(pruefenobgewonnen.pruefenunendschieden(spielfeld)) {
+                if (pruefenobgewonnen.pruefenunendschieden(spielfeld)) {
                     Unendschieden();
                 }
+
             });
+
         }
 
-        public StringProperty textProperty(){
+        public StringProperty textProperty() {
             return label.textProperty();
         }
 
@@ -117,16 +141,21 @@ public class TileBoard {
         public String getValue() {
             return label.getText();
         }
+
         public void setValue(String value) {
-                label.setText(value);
+            label.setText(value);
         }
-        public void Gewonnen(Spieler gewonnenderSpieler){
-            infoCenter.updateMessage("Spieler "+gewonnenderSpieler.getSpielerNummer()+" hat gewonnen");
+
+        public void Gewonnen(Spieler gewonnenderSpieler) {
+            infoCenter.updateMessage("Spieler " + gewonnenderSpieler.getSpielerNummer() + " hat gewonnen");
         }
-        public void Unendschieden(){
+
+        public void Unendschieden() {
             infoCenter.updateMessage("Unendschieden");
         }
 
+        public void reset() {
+            label.setText(spielfeld.leeresFeld);
+        }
     }
 }
-

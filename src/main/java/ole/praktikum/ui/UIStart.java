@@ -66,9 +66,7 @@ public class UIStart extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-
-                    ;
-
+                tileBoard.Gewonnen();
             }
         };
     }
